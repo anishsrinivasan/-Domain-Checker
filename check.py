@@ -19,6 +19,9 @@ for domain1 in domains:
             r = requests.get(url = URL, params = PARAMS, headers={"Authorization": "sso-key key:secretkey"}) 
             data = r.json()
             if(data["available"]):
-                write_file.write(domain+'.com\n')
-                print(domain+'.com')
+               currency = str(data["price"])
+                currency = currency[:-6]
+                currency = int(currency)*72
+                write_file.write(domain+'.com - Rs.'+str(currency)+' \n')
+                print(domain+'.com - Rs.'+str(currency)+' \n')
 write_file.close()
